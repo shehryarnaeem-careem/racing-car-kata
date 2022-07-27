@@ -13,33 +13,30 @@ public class Race {
     private final List<Driver> results;
     private final Map<Driver, String> driverNames;
 
-    public Race(String name, Driver... drivers) {
+    public Race(String name, Driver... humanDrivers) {
         this.name = name;
-        this.results = Arrays.asList(drivers);
+        this.results = Arrays.asList(humanDrivers);
         this.driverNames = new HashMap<>();
         for (Driver driver : results) {
             String driverName = driver.getName();
-            if (driver instanceof SelfDrivingCar) {
-                driverName = "Self Driving Car - " + driver.getCountry() + " (" + ((SelfDrivingCar) driver).getAlgorithmVersion() + ")";
-            }
             this.driverNames.put(driver, driverName);
         }
     }
 
-    public int position(Driver driver) {
-        return this.results.indexOf(driver);
+    public int position(Driver humanDriver) {
+        return this.results.indexOf(humanDriver);
     }
 
-    public int getPoints(Driver driver) {
-        return Race.POINTS[position(driver)];
+    public int getPoints(Driver humanDriver) {
+        return Race.POINTS[position(humanDriver)];
     }
 
     public List<Driver> getResults() {
         return results;
     }
 
-    public String getDriverName(Driver driver) {
-        return this.driverNames.get(driver);
+    public String getDriverName(Driver humanDriver) {
+        return this.driverNames.get(humanDriver);
     }
 
     @Override

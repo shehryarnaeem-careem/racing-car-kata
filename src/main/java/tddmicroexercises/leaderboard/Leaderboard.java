@@ -22,11 +22,7 @@ public class Leaderboard {
             for (Driver driver : race.getResults()) {
                 String driverName = race.getDriverName(driver);
                 int points = race.getPoints(driver);
-                if (results.containsKey(driverName)) {
-                    results.put(driverName, results.get(driverName) + points);
-                } else {
-                    results.put(driverName, 0 + points);
-                }
+                results.put(driverName, results.getOrDefault(driverName,0) + points);
             }
         }
         return results;
